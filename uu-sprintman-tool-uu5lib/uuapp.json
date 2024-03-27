@@ -20,6 +20,22 @@
   "uu-sprintman-tool-uu5lib": {
     "namespace": "UuSprintmanToolUu5lib",
     "sourceUri": "https://cdn.plus4u.net/uu-uu/%s/uu-sprintman-tool-uu5lib.min.js",
-    "componentList": []
+    "componentList": [
+      {
+        "code": "UuSprintmanToolUu5lib.Bricks.TicketImporter",
+        "name": "TicketImporter",
+        "tagList": [
+          "UuSprintmanToolUu5lib",
+          "Bricks",
+          "TicketImporter"
+        ],
+        "docCode": "UuSprintmanToolUu5libBricksTicketImporter",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuSprintmanToolUu5lib.Bricks.TicketImporter />"
+      }
+    ]
   }
 }
