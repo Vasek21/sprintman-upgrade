@@ -4,10 +4,13 @@ const Constants = {
     multiple: false,
     itemList: [{ value: "Must have!" }, { value: "Should have." }, { value: "Could have." }],
   },
+  BacklogRequestSelectProps: {
+    required: true,
+    multiple: false,
+  },
   TagCodesProps: {
     required: false,
     multiple: false,
-    itemList: [{ value: "imp" }, { value: "tst" }, { value: "dsg" }],
   },
 };
 

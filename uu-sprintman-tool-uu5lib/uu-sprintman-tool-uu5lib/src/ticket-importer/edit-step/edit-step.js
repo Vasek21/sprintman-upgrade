@@ -7,6 +7,8 @@ import TextCell from "../cells/text-cell";
 import SelectCell from "../cells/select-cell";
 import { Constants } from "../cells/constants";
 import SolverStatistics from "./solver-statistics";
+import { useBacklogRequest } from "../../sprintman/use-backlog-request";
+import { useTopic } from "../../sprintman/use-topic";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -37,6 +39,9 @@ const EditStep = createComponent({
   render(props) {
     //@@viewOn:private
     const { onNext, onPrevious } = props;
+
+    const backlogList = useBacklogRequest();
+    const topicList = useTopic();
     const _renderCell = (columnKey, rowData, indexes) => (
       <TextCell columnKey={columnKey} rowData={rowData} indexes={indexes} setData={props.setData} />
     );
@@ -49,6 +54,12 @@ const EditStep = createComponent({
         selectProps={selectProps}
       />
     );
+
+    const _prepareItemList = (props, dataList) => {
+      props.itemList = dataList.data.map(({ data }) => ({ value: data.code, children: data.name }));
+      return props;
+    };
+
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -66,7 +77,13 @@ const EditStep = createComponent({
               {
                 value: "backlogRequestCode",
                 header: "Backlog code",
-                cellComponent: (rowData, indexes) => _renderCell("backlogRequestCode", rowData, indexes),
+                cellComponent: (rowData, indexes) =>
+                  _renderSelectCell(
+                    "backlogRequestCode",
+                    rowData,
+                    indexes,
+                    _prepareItemList(Constants.BacklogRequestSelectProps, backlogList),
+                  ),
               },
               {
                 value: "name",
@@ -88,7 +105,7 @@ const EditStep = createComponent({
                 value: "tagCodes",
                 header: "Tag Code",
                 cellComponent: (rowData, indexes) =>
-                  _renderSelectCell("tagCodes", rowData, indexes, Constants.TagCodesProps),
+                  _renderSelectCell("tagCodes", rowData, indexes, _prepareItemList(Constants.TagCodesProps, topicList)),
               },
               {
                 value: "complexity",

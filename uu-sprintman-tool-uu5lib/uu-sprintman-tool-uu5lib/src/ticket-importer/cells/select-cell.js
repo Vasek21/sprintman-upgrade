@@ -35,7 +35,7 @@ const SelectCell = createComponent({
     //@@viewOn:render
     return (
       <div>
-        <Uu5Forms.Select
+        <Uu5Forms.TextSelect
           value={props.rowData.children}
           {...props.selectProps}
           onChange={(opt) => {
