@@ -1,5 +1,6 @@
 //@@viewOn:imports
-import { createComponent } from "uu5g05";
+import { createComponent, PropTypes } from "uu5g05";
+import { Button } from "uu5g05-elements";
 import Config from "../config/config.js";
 //@@viewOff:imports
 
@@ -15,23 +16,38 @@ const EditStep = createComponent({
   //@@viewOff:statics
 
   //@@viewOn:propTypes
-  propTypes: {},
+  propTypes: {
+    onNext: PropTypes.func,
+    onPrevious: PropTypes.func,
+  },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
-  defaultProps: {},
+  defaultProps: {
+    onNext: () => {},
+    onPrevious: () => {},
+  },
   //@@viewOff:defaultProps
 
   render(props) {
     //@@viewOn:private
-    const { children } = props;
+    const { onNext, onPrevious } = props;
     //@@viewOff:private
 
     //@@viewOn:interface
     //@@viewOff:interface
 
     //@@viewOn:render
-    return <div>EditStep</div>;
+    return (
+      <div>
+        EditStep
+        <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "end", gap: "4px" })}>
+          <Button onClick={onPrevious}>Previous</Button>
+          <Button onClick={onNext}>Next</Button>
+        </div>
+      </div>
+    );
+
     //@@viewOff:render
   },
 });

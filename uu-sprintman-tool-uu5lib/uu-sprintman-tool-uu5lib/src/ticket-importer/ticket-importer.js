@@ -1,9 +1,9 @@
 //@@viewOn:imports
 import { createComponent } from "uu5g05";
+import { Block, SpacingProvider } from "uu5g05-elements";
 import Config from "./config/config.js";
-import EditStep from "./edit-step/edit-step";
-import UploadStep from "./upload-step/upload-step";
-import ImportStep from "./import-step/import-step";
+import TicketStepper from "./ticket-stepper";
+import StepRenderer from "./step-renderer";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -27,18 +27,23 @@ const TicketImporter = createComponent({
 
   render(props) {
     //@@viewOn:private
-    const { children } = props;
     //@@viewOff:private
 
     //@@viewOn:interface
     //@@viewOff:interface
 
     //@@viewOn:render
-    return <div>
-      <UploadStep/>
-      <EditStep/>
-      <ImportStep/>
-    </div>;
+    return (
+      <SpacingProvider type="tight">
+        <Block card="full">
+          <TicketStepper>
+            {({ stepIndex, handleNext, handlePrevious }) => (
+              <StepRenderer stepIndex={stepIndex} onNext={handleNext} onPrevious={handlePrevious} />
+            )}
+          </TicketStepper>
+        </Block>
+      </SpacingProvider>
+    );
     //@@viewOff:render
   },
 });
