@@ -21,13 +21,19 @@
     <script type="text/babel">
       import { Utils, createComponent } from "uu5g05";
       import UuSprintmanToolUu5lib from "uu-sprintman-tool-uu5lib";
+      import { SpaProvider } from "uu_plus4u5g02";
+      import { Spa } from "uu_plus4u5g02-app";
 
       const Page = createComponent({
         render() {
           return (
             <main>
-              <h4>Default props</h4>
-              <UuSprintmanToolUu5lib.Bricks.TicketImporter />
+              <SpaProvider skipAppWorkspaceProvider>
+                <Spa>
+              <UuSprintmanToolUu5lib.Bricks.TicketImporter baseUri={"https://uuapp.plus4u.net/uu-sprintman-maing01/51673aa1f4fb4613a31fd5e8696f538b/"}/>
+
+                </Spa>
+              </SpaProvider>
             </main>
           );
         },

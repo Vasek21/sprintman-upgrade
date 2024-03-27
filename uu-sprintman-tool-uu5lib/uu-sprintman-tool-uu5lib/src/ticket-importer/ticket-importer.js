@@ -4,6 +4,12 @@ import { Block, SpacingProvider } from "uu5g05-elements";
 import Config from "../bricks/config/config.js";
 import TicketStepper from "./ticket-stepper";
 import StepRenderer from "./step-renderer";
+import SprintManProvider from "../sprintman/sprintman-provider";
+import DataObjectStateResolver from "../common/data-object-state-resolver";
+import BacklogRequestListProvider from "../sprintman/backlog-request-list-provider";
+import DataListStateResolver from "../common/data-list-state-resolver";
+import TicketListProvider from "../sprintman/ticket-list-provider";
+import TopicListProvider from "../sprintman/topic-list-provider";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -26,6 +32,8 @@ const TicketImporter = createComponent({
   //@@viewOff:defaultProps
 
   render(props) {
+    console.log(props);
+    const { baseUri } = props;
     //@@viewOn:private
     //@@viewOff:private
 
@@ -34,15 +42,43 @@ const TicketImporter = createComponent({
 
     //@@viewOn:render
     return (
-      <SpacingProvider type="tight">
-        <Block card="full">
-          <TicketStepper>
-            {({ stepIndex, handleNext, handlePrevious }) => (
-              <StepRenderer stepIndex={stepIndex} onNext={handleNext} onPrevious={handlePrevious} />
+      <SprintManProvider baseUri={baseUri}>
+        {(sprintManDataObject) => (
+          <BacklogRequestListProvider baseUri={baseUri}>
+            {(backlogRequestDataList) => (
+              <TicketListProvider baseUri={baseUri}>
+                {(ticketDataList) => (
+                  <TopicListProvider baseUri={baseUri}>
+                    {(topicDataList) => (
+                      <DataObjectStateResolver dataObject={sprintManDataObject}>
+                        <DataListStateResolver dataList={backlogRequestDataList}>
+                          <DataListStateResolver dataList={ticketDataList}>
+                            <DataListStateResolver dataList={topicDataList}>
+                              <SpacingProvider type="tight">
+                                <Block card="full">
+                                  <TicketStepper>
+                                    {({ stepIndex, handleNext, handlePrevious }) => (
+                                      <StepRenderer
+                                        stepIndex={stepIndex}
+                                        onNext={handleNext}
+                                        onPrevious={handlePrevious}
+                                      />
+                                    )}
+                                  </TicketStepper>
+                                </Block>
+                              </SpacingProvider>
+                            </DataListStateResolver>
+                          </DataListStateResolver>
+                        </DataListStateResolver>
+                      </DataObjectStateResolver>
+                    )}
+                  </TopicListProvider>
+                )}
+              </TicketListProvider>
             )}
-          </TicketStepper>
-        </Block>
-      </SpacingProvider>
+          </BacklogRequestListProvider>
+        )}
+      </SprintManProvider>
     );
     //@@viewOff:render
   },
