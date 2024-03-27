@@ -9,7 +9,7 @@
   "license": "License Commercial",
   "spec": "nodejs-multi; uu_appg01_devkit@5.20.0",
   "dependencies": {
-    "uu5tilesg02-elements": "^2.15.1"
+
   },
   "uuBuildSettings": {},
   "devDependencies": {

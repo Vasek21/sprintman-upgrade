@@ -72,20 +72,9 @@ const EditStep = createComponent({
                 cellComponent: (rowData, indexes) => _renderCell("name", rowData, indexes),
               },
               {
-                value: "type",
-                header: "Type",
-                cellComponent: (rowData, indexes) => _renderCell("type", rowData, indexes),
-              },
-              {
                 value: "description",
                 header: "Description",
                 cellComponent: (rowData, indexes) => _renderCell("description", rowData, indexes),
-              },
-              {
-                value: "activity",
-                header: "Activity",
-                cellComponent: (rowData, indexes) =>
-                  _renderSelectCell("activity", rowData, indexes, Constants.ActivitySelectProps),
               },
               {
                 value: "priority",
@@ -103,11 +92,6 @@ const EditStep = createComponent({
                 value: "complexity",
                 header: "Complexity",
                 cellComponent: (rowData, indexes) => _renderCell("complexity", rowData, indexes),
-              },
-              {
-                value: "correction",
-                header: "Correction",
-                cellComponent: (rowData, indexes) => _renderCell("correction", rowData, indexes),
               },
               {
                 value: "responsibleSolver",
