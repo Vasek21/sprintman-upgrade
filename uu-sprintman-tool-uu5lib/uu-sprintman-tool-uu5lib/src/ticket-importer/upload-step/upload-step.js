@@ -1,7 +1,6 @@
 //@@viewOn:imports
 import { createComponent } from "uu5g05";
 import Uu5Forms from "uu5g05-forms";
-import { Button } from "uu5g05-elements";
 import Config from "../config/config.js";
 //@@viewOff:imports
 
@@ -9,7 +8,7 @@ import Config from "../config/config.js";
 //@@viewOff:constants
 
 //@@viewOn:helpers
-const FILE_PROPS = { display: "grid", rowGap: 8, gridTemplateRows: "auto", marginBottom: 8 };
+const FILE_PROPS = { display: "grid", rowGap: 8, marginBottom: 8, width: "400px" };
 
 const EXCEL_COLUMN_INDEXES = {
   backlogRequestCode: 0,
@@ -40,7 +39,7 @@ const UploadStep = createComponent({
   //@@viewOff:defaultProps
 
   render(props) {
-    const { onPrevious, onNext, setData } = props;
+    const { onNext, setData } = props;
     //@@viewOn:private
     //@@viewOff:private
     function onSubmit(event) {
@@ -48,6 +47,7 @@ const UploadStep = createComponent({
 
       reader.onload = (e) => {
         setData(parseCsv(e.target.result));
+        onNext();
       };
 
       reader.readAsText(event.data.value.ticketList);
@@ -76,13 +76,13 @@ const UploadStep = createComponent({
     return (
       <>
         <Uu5Forms.Form onSubmit={onSubmit}>
-          <div className={Config.Css.css(FILE_PROPS)}>
-            <Uu5Forms.FormFile name="ticketList" label="Upload tickets" required />
-            <Uu5Forms.SubmitButton />
+          <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "center", gap: "4px" })}>
+            <div className={Config.Css.css(FILE_PROPS)}>
+              <Uu5Forms.FormFile name="ticketList" label="Upload tickets" required />
+            </div>
           </div>
           <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "end", gap: "4px" })}>
-            <Button onClick={onPrevious}>Previous</Button>
-            <Button onClick={onNext}>Next</Button>
+            <Uu5Forms.SubmitButton>Next</Uu5Forms.SubmitButton>
           </div>
         </Uu5Forms.Form>
       </>
