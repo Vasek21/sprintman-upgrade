@@ -2,6 +2,7 @@
 import { createComponent } from "uu5g05";
 import Uu5Forms from "uu5g05-forms";
 import { useState } from "uu5g05";
+import { Button } from "uu5g05-elements";
 import Config from "../config/config.js";
 //@@viewOff:imports
 
@@ -39,7 +40,8 @@ const UploadStep = createComponent({
   defaultProps: {},
   //@@viewOff:defaultProps
 
-  render() {
+  render(props) {
+    const { onPrevious, onNext } = props;
     //@@viewOn:private
     const [csvData, setCsvData] = useState([]);
     //@@viewOff:private
@@ -79,6 +81,10 @@ const UploadStep = createComponent({
           <div className={Config.Css.css(FILE_PROPS)}>
             <Uu5Forms.FormFile name="ticketList" label="Upload tickets" required />
             <Uu5Forms.SubmitButton />
+          </div>
+          <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "end", gap: "4px" })}>
+            <Button onClick={onPrevious}>Previous</Button>
+            <Button onClick={onNext}>Next</Button>
           </div>
         </Uu5Forms.Form>
         {JSON.stringify(csvData, null, 2)}
