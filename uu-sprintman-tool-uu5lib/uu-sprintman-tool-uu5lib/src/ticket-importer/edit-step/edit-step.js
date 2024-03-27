@@ -9,6 +9,7 @@ import { Constants } from "../cells/constants";
 import SolverStatistics from "./solver-statistics";
 import { useBacklogRequest } from "../../sprintman/use-backlog-request";
 import { useTopic } from "../../sprintman/use-topic";
+import DeleteCell from "../cells/delete-cell";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -45,6 +46,8 @@ const EditStep = createComponent({
     const _renderCell = (columnKey, rowData, indexes) => (
       <TextCell columnKey={columnKey} rowData={rowData} indexes={indexes} setData={props.setData} />
     );
+
+    const _renderDelete = (rowData, indexes) => <DeleteCell indexes={indexes} setData={props.setData} />;
     const _renderSelectCell = (columnKey, rowData, indexes, selectProps) => (
       <SelectCell
         columnKey={columnKey}
@@ -116,6 +119,11 @@ const EditStep = createComponent({
                 value: "responsibleSolver",
                 header: "Responsible Solver",
                 cellComponent: (rowData, indexes) => _renderCell("responsibleSolver", rowData, indexes),
+              },
+              {
+                value: "delete",
+                header: "Delete",
+                cellComponent: (rowData, indexes) => _renderDelete(rowData, indexes),
               },
             ]}
           />
