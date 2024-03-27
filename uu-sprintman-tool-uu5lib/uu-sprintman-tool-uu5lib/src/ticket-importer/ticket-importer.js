@@ -1,7 +1,7 @@
 //@@viewOn:imports
 import { createComponent } from "uu5g05";
 import { Block, SpacingProvider } from "uu5g05-elements";
-import Config from "./config/config.js";
+import Config from "../bricks/config/config.js";
 import TicketStepper from "./ticket-stepper";
 import StepRenderer from "./step-renderer";
 //@@viewOff:imports

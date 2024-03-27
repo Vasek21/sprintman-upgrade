@@ -28,7 +28,7 @@ const EXCEL_COLUMN_INDEXES = {
 
 const UploadStep = createComponent({
   //@@viewOn:statics
-  uu5Tag: Config.TAG + ".UploadStep",
+  uu5Tag: Config.TAG + "UploadStep",
   //@@viewOff:statics
 
   //@@viewOn:propTypes
