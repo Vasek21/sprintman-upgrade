@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import { createComponent } from "uu5g05";
-import { Icon } from "uu5g05-elements";
+import { Button } from "uu5g05-elements";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -36,7 +36,12 @@ const DeleteCell = createComponent({
     //@@viewOn:render
     return (
       <div>
-        <Icon icon="mdi-trash-can" onClick={() => props.setData((oldData) => deleteItem(oldData, props.indexes))} />
+        <Button
+          icon="mdi-trash-can"
+          colorScheme={"red"}
+          onClick={() => props.setData((oldData) => deleteItem(oldData, props.indexes))}
+          width={"100%"}
+        />
       </div>
     );
     //@@viewOff:render

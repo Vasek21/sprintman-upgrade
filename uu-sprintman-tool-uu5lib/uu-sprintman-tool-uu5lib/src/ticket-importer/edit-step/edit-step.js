@@ -74,6 +74,15 @@ const EditStep = createComponent({
       <div className={Config.Css.css({ display: "flex", flexDirection: "column", gap: "4px" })}>
         <SolverStatistics data={props.data} />
         <Panel header={"Ticket list"} open>
+          <Button
+            value={"add new"}
+            colorScheme={"primary"}
+            icon="mdi-plus"
+            onClick={() => props.setData((oldData) => [...oldData, {}])}
+            width={"100%"}
+          >
+            Create new ticket
+          </Button>
           <Uu5TilesElements.Table
             data={props.data}
             columnList={[
