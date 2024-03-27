@@ -1,5 +1,5 @@
 //@@viewOn:imports
-import { createComponent, PropTypes } from "uu5g05";
+import { createComponent, PropTypes, useState } from "uu5g05";
 import Config from "./config/config.js";
 import EditStep from "./edit-step/edit-step";
 import UploadStep from "./upload-step/upload-step";
@@ -28,6 +28,7 @@ const StepRenderer = createComponent({
   render(props) {
     //@@viewOn:private
     const { stepIndex, onNext, onPrevious } = props;
+    const [data, setData] = useState([]);
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -37,11 +38,11 @@ const StepRenderer = createComponent({
     const renderStepIndex = (stepIndex) => {
       switch (stepIndex) {
         case 0:
-          return <UploadStep onNext={onNext} onPrevious={onPrevious} />;
+          return <UploadStep onNext={onNext} onPrevious={onPrevious} setData={setData} />;
         case 1:
-          return <EditStep onNext={onNext} onPrevious={onPrevious} />;
+          return <EditStep onNext={onNext} onPrevious={onPrevious} data={data} setData={setData} />;
         case 2:
-          return <ImportStep onNext={onNext} onPrevious={onPrevious} />;
+          return <ImportStep onNext={onNext} onPrevious={onPrevious} data={data} />;
       }
     };
 
