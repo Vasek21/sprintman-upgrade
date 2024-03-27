@@ -1,0 +1,25 @@
+{
+  "product": "uu",
+  "version": "0.1.0",
+  "license": "License Commercial",
+  "description": {
+    "en": "",
+    "cs": ""
+  },
+  "docUri": "",
+  "flsUri": "",
+  "slsUri": "",
+  "imageUri": "",
+  "devkit": {
+    "development": {
+      "appBoxLocationUri": "----- VALUE REQUIRED -----",
+      "appDeploymentUri": null,
+      "resourcePoolUri": "----- VALUE REQUIRED -----"
+    }
+  },
+  "uu-sprintman-tool-uu5lib": {
+    "namespace": "UuSprintmanToolUu5lib",
+    "sourceUri": "https://cdn.plus4u.net/uu-uu/%s/uu-sprintman-tool-uu5lib.min.js",
+    "componentList": []
+  }
+}

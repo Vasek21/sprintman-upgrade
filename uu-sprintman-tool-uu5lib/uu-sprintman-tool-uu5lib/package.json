@@ -1,0 +1,43 @@
+{
+  "name": "uu-sprintman-tool-uu5lib",
+  "version": "0.1.0",
+  "description": "",
+  "license": "License Commercial",
+  "namespace": "UuSprintmanToolUu5lib",
+  "spec": "uu5-lib; uu_appg01_devkit@5.20.0",
+  "dependencies": {
+    "uu5g05": "^1.22.1",
+    "uu5g05-elements": "^1.22.1"
+  },
+  "uuBuildSettings": {
+    "externals": {}
+  },
+  "devDependencies": {
+    "uu_appg01_devkit": "^5.20.0",
+    "uu5g05-test": "^1.22.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "clean": "uu_appg01_devkit clean",
+    "test": "uu_appg01_devkit test",
+    "build": "uu_appg01_devkit build",
+    "package": "uu_appg01_devkit package",
+    "start": "uu_appg01_devkit start",
+    "prettify": "uu_appg01_devkit prettify",
+    "lsiExport": "uu_appg01_devkit lsiExport",
+    "lsiImport": "uu_appg01_devkit lsiImport",
+    "vulnerabilityScan": "uu_appg01_devkit vulnerabilityScan",
+    "generate": "uu_appg01_devkit generate",
+    "uuAppDevKitUpgrade": "uu_appg01_devkit uuAppDevKitUpgrade"
+  },
+  "main": "src/index.js",
+  "files": [
+    "dist",
+    "dist-node"
+  ],
+  "prettier": {
+    "printWidth": 120
+  }
+}
