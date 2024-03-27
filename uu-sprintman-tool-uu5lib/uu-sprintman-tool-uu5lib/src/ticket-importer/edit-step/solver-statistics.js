@@ -1,6 +1,7 @@
 //@@viewOn:imports
 import { createComponent, PropTypes, useMemo } from "uu5g05";
-import { Panel } from "uu5g05-elements";
+import { Panel, Progress, Grid } from "uu5g05-elements";
+import { PersonItem } from "uu_plus4u5g02-elements";
 import Config from "../config/config.js";
 import SolverStatisticsHelper from "../../helpers/solver-statistics-helper";
 //@@viewOff:imports
@@ -40,7 +41,30 @@ const SolverStatistics = createComponent({
 
     //@@viewOn:render
 
-    return <Panel header="Solver statistics">Stat</Panel>;
+    const renderSolverItem = (uuIdentity, complexity = 0, sprintComplexity = 0) => {
+      return (
+        <Grid templateColumns={{ xs: "1fr", m: "1fr 2fr" }} columnGap={"8px"}>
+          <PersonItem title={uuIdentity} />
+          <Progress
+            type="horizontal"
+            value={(parseFloat(complexity) / parseFloat(sprintComplexity)) * 100}
+            text={`[${complexity}h/${sprintComplexity}h]`}
+            width="100%"
+            size={null}
+          />
+        </Grid>
+      );
+    };
+
+    return (
+      <Panel header="Solver statistics">
+        {statistics.solverList.map((item, index) => (
+          <div className={Config.Css.css({ marginBottom: "2px" })} key={index}>
+            {renderSolverItem(item.name, item.complexity, statistics.sprintComplexity)}
+          </div>
+        ))}
+      </Panel>
+    );
 
     //@@viewOff:render
   },

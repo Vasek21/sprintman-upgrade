@@ -1,7 +1,6 @@
 //@@viewOn:imports
 import { createComponent, useState } from "uu5g05";
-import { Stepper } from "uu5g05-elements";
-import { Button } from "uu5g05-elements";
+import { Stepper, Line } from "uu5g05-elements";
 import Config from "./config/config.js";
 //@@viewOff:imports
 
@@ -71,6 +70,7 @@ const TicketStepper = createComponent({
           }}
         />
         <div className={Config.Css.css({ width: "100%" })}>
+          <Line margin="8px 0" significance="subdued" />
           {typeof props.children === "function"
             ? props.children({ stepIndex, handleNext, handlePrevious })
             : props.children}

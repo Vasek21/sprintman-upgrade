@@ -19,8 +19,10 @@ const SolverStatisticsHelper = {
       }
     }
 
-    console.log(solverMap, sprintComplexity);
-    return { solverMap, sprintComplexity };
+    let solverList = Object.entries(solverMap).map(([key, value]) => {
+      return { name: key, complexity: value };
+    });
+    return { solverList, sprintComplexity };
   },
 };
 
