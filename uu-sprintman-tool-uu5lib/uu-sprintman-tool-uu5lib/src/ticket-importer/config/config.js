@@ -1,7 +1,7 @@
 import { Utils } from "uu5g05";
 import Config from "../../config/config.js";
 
-const TAG = Config.TAG + "Bricks.TicketImporter";
+const TAG = Config.TAG + ".TicketImporter";
 
 export default {
   ...Config,
@@ -12,6 +12,6 @@ export default {
       .toLowerCase()
       .replace(/\./g, "-")
       .replace(/[^a-z-]/g, ""),
-    process.env.NAME + "/" + process.env.OUTPUT_NAME + "@" + process.env.VERSION // this helps preserve proper order of styles among loaded libraries
+    process.env.NAME + "/" + process.env.OUTPUT_NAME + "@" + process.env.VERSION, // this helps preserve proper order of styles among loaded libraries
   ),
 };
