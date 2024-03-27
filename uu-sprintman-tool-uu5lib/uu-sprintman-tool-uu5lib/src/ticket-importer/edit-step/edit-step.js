@@ -1,11 +1,12 @@
 //@@viewOn:imports
 import { createComponent, PropTypes } from "uu5g05";
-import { Button } from "uu5g05-elements";
+import { Button, Panel } from "uu5g05-elements";
 import Uu5TilesElements from "uu5tilesg02-elements";
 import Config from "../config/config.js";
 import TextCell from "../cells/text-cell";
 import SelectCell from "../cells/select-cell";
 import { Constants } from "../cells/constants";
+import SolverStatistics from "./solver-statistics";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -56,8 +57,9 @@ const EditStep = createComponent({
     //@@viewOn:render
 
     return (
-      <div>
-        <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "end", gap: "4px" })}>
+      <div className={Config.Css.css({ display: "flex", flexDirection: "column", gap: "4px" })}>
+        <SolverStatistics data={props.data} />
+        <Panel header={"Ticket list"} open>
           <Uu5TilesElements.Table
             data={props.data}
             columnList={[
@@ -100,9 +102,11 @@ const EditStep = createComponent({
               },
             ]}
           />
+        </Panel>
+        <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "end", gap: "4px" })}>
+          <Button onClick={onPrevious}>Previous</Button>
+          <Button onClick={onNext}>Next</Button>
         </div>
-        <Button onClick={onPrevious}>Previous</Button>
-        <Button onClick={onNext}>Next</Button>
       </div>
     );
 
