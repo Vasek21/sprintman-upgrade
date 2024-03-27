@@ -1,7 +1,6 @@
 //@@viewOn:imports
 import { createComponent } from "uu5g05";
 import Uu5Forms from "uu5g05-forms";
-import { useState } from "uu5g05";
 import { Button } from "uu5g05-elements";
 import Config from "../config/config.js";
 //@@viewOff:imports
@@ -13,7 +12,7 @@ import Config from "../config/config.js";
 const FILE_PROPS = { display: "grid", rowGap: 8, gridTemplateRows: "auto", marginBottom: 8 };
 
 const EXCEL_COLUMN_INDEXES = {
-  backlogCode: 0,
+  backlogRequestCode: 0,
   name: 1,
   type: 2,
   description: 3,
@@ -41,15 +40,14 @@ const UploadStep = createComponent({
   //@@viewOff:defaultProps
 
   render(props) {
-    const { onPrevious, onNext } = props;
+    const { onPrevious, onNext, setData } = props;
     //@@viewOn:private
-    const [csvData, setCsvData] = useState([]);
     //@@viewOff:private
     function onSubmit(event) {
       const reader = new FileReader();
 
       reader.onload = (e) => {
-        setCsvData(parseCsv(e.target.result));
+        setData(parseCsv(e.target.result));
       };
 
       reader.readAsText(event.data.value.ticketList);
@@ -87,7 +85,6 @@ const UploadStep = createComponent({
             <Button onClick={onNext}>Next</Button>
           </div>
         </Uu5Forms.Form>
-        {JSON.stringify(csvData, null, 2)}
       </>
     );
     //@@viewOff:render

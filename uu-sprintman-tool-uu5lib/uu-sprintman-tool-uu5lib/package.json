@@ -8,7 +8,8 @@
   "dependencies": {
     "uu5g05": "^1.22.1",
     "uu5g05-elements": "^1.22.1",
-    "uu5g05-forms": "^1.30.3"
+    "uu5g05-forms": "^1.30.3",
+    "uu5tilesg02-elements": "^2.15.1"
   },
   "uuBuildSettings": {
     "externals": {}
