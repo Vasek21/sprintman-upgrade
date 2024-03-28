@@ -25,7 +25,6 @@ const DeleteCell = createComponent({
     //@@viewOn:private
     const deleteItem = (oldData, indexes) => {
       oldData.splice(indexes.rowIndex, 1);
-      console.log(oldData);
       return [...oldData];
     };
     //@@viewOff:private

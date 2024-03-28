@@ -10,6 +10,7 @@ import SolverStatistics from "./solver-statistics";
 import { useBacklogRequest } from "../../sprintman/use-backlog-request";
 import { useTopic } from "../../sprintman/use-topic";
 import DeleteCell from "../cells/delete-cell";
+import Calls from "calls";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -34,6 +35,8 @@ const EditStep = createComponent({
   defaultProps: {
     onNext: () => {},
     onPrevious: () => {},
+    dockitBaseUri: "https://uuapp-dev.plus4u.net/uu-dockit-maing02/d600cc5f059e4b6c924eaab35ae2da7e",
+    documentId: "6605238c2a1b4c002913057f",
   },
   //@@viewOff:defaultProps
 
@@ -60,6 +63,27 @@ const EditStep = createComponent({
     const _prepareItemList = (props, dataList) => {
       props.itemList = dataList.data.map(({ data }) => ({ value: data.code, children: data.name }));
       return props;
+    };
+
+    const handleSaveButton = async () => {
+      const attachmentCode = `sprint_${sprintId}`;
+      let dtoIn = {
+        documentId: props.documentId,
+        name: "Sprint Tickets  - " + sprintId,
+        filename: "sprintTickets.json",
+        code: attachmentCode,
+        contentType: "application/json",
+        data: new Blob([JSON.stringify(props.data)], { type: "application/json" }),
+      };
+      try {
+        await Calls.Document.attachmentGet({ ...dtoIn }, props.dockitBaseUri);
+      } catch (e) {
+        await Calls.Document.attachmentCreate({ ...dtoIn }, props.dockitBaseUri);
+        onNext();
+        return;
+      }
+      await Calls.Document.attachmentUpdate({ ...dtoIn }, props.dockitBaseUri);
+      onNext();
     };
 
     //@@viewOff:private
@@ -138,7 +162,7 @@ const EditStep = createComponent({
         </Panel>
         <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "end", gap: "4px" })}>
           <Button onClick={onPrevious}>Previous</Button>
-          <Button onClick={onNext}>Next</Button>
+          <Button onClick={handleSaveButton}>Save</Button>
         </div>
       </div>
     );
