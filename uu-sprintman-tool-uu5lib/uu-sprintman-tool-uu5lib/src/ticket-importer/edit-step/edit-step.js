@@ -42,7 +42,7 @@ const EditStep = createComponent({
 
   render(props) {
     //@@viewOn:private
-    const { onNext, onPrevious, sprintId } = props;
+    const { onNext, onPrevious, sprintId, setAlertOpen } = props;
     const backlogList = useBacklogRequest();
     const topicList = useTopic();
     const _renderCell = (columnKey, rowData, indexes) => (
@@ -79,10 +79,12 @@ const EditStep = createComponent({
         await Calls.Document.attachmentGet({ ...dtoIn }, props.dockitBaseUri);
       } catch (e) {
         await Calls.Document.attachmentCreate({ ...dtoIn }, props.dockitBaseUri);
+        setAlertOpen(true);
         onNext();
         return;
       }
       await Calls.Document.attachmentUpdate({ ...dtoIn }, props.dockitBaseUri);
+      setAlertOpen(true);
       onNext();
     };
 
