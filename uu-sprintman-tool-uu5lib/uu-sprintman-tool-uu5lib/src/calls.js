@@ -36,6 +36,20 @@ let Calls = {
       return Calls.call("get", commandUri, dtoIn);
     },
   },
+  Document: {
+    attachmentCreate(dtoIn, baseUri) {
+      const commandUri = Calls.getCommandUri("document/attachment/create", baseUri);
+      return Calls.call("post", commandUri, dtoIn);
+    },
+    attachmentUpdate(dtoIn, baseUri) {
+      const commandUri = Calls.getCommandUri("document/attachment/update", baseUri);
+      return Calls.call("post", commandUri, dtoIn);
+    },
+    attachmentGet(dtoIn, baseUri) {
+      const commandUri = Calls.getCommandUri("document/attachment/get", baseUri);
+      return Calls.call("get", commandUri, dtoIn);
+    },
+  },
   getCommandUri(aUseCase, baseUri) {
     // useCase <=> e.g. "getSomething" or "sys/getSomething"
     // add useCase to the application base URI

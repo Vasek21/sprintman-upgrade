@@ -33,7 +33,6 @@ const TicketImporter = createComponent({
   //@@viewOff:defaultProps
 
   render(props) {
-    console.log(props);
     const { baseUri } = props;
     //@@viewOn:private
     //@@viewOff:private

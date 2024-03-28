@@ -98,7 +98,7 @@ const UploadStep = createComponent({
             </div>
           </div>
           <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "end", gap: "4px" })}>
-            <Uu5Forms.SubmitButton>Next</Uu5Forms.SubmitButton>
+            <Uu5Forms.SubmitButton>Edit</Uu5Forms.SubmitButton>
           </div>
         </Uu5Forms.Form>
       </>
