@@ -7,7 +7,13 @@
   "spec": "uu5-lib; uu_appg01_devkit@5.20.0",
   "dependencies": {
     "uu5g05": "^1.22.1",
-    "uu5g05-elements": "^1.22.1"
+    "uu5g05-elements": "^1.22.1",
+    "uu5g05-forms": "^1.30.3",
+    "uu5tilesg02-elements": "^2.15.1",
+    "uu5tilesg02": "^2.0.0",
+    "uu_plus4u5g02": "^1.0.0",
+    "uu_plus4u5g02-elements": "^1.0.0",
+    "uu_plus4u5g02-app": "^1.2.2"
   },
   "uuBuildSettings": {
     "externals": {}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UuSprintmanToolUu5lib.Bricks.TicketImporter Demo</title>
+
+    <script src="https://cdn.plus4u.net/uu-uu5loaderg01/1.0.0/uu5loaderg01.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.plus4u.net/uu-uu5g05/1.0.0/assets/example-config.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.plus4u.net/uu-uu/0.0.0/assets/example-config.js" crossorigin="anonymous"></script>
+
+    <style>
+      body {
+        padding: 16px 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="renderHere"></div>
+
+    <script type="text/babel">
+      import { Utils, createComponent } from "uu5g05";
+      import UuSprintmanToolUu5lib from "uu-sprintman-tool-uu5lib";
+      import { SpaProvider } from "uu_plus4u5g02";
+      import { Spa } from "uu_plus4u5g02-app";
+
+      const Page = createComponent({
+        render() {
+          return (
+            <main>
+              <SpaProvider skipAppWorkspaceProvider>
+                <Spa>
+              <UuSprintmanToolUu5lib.Bricks.TicketImporter baseUri={"https://uuapp.plus4u.net/uu-sprintman-maing01/51673aa1f4fb4613a31fd5e8696f538b/"}/>
+
+                </Spa>
+              </SpaProvider>
+            </main>
+          );
+        },
+      });
+
+      Utils.Dom.render(<Page />, document.getElementById("renderHere"));
+    </script>
+  </body>
+</html>
