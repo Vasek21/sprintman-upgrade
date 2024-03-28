@@ -22,11 +22,11 @@ const SolverStatistics = createComponent({
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
-  defaultProps: {},
+  defaultProps: { open: false },
   //@@viewOff:defaultProps
 
   render(props) {
-    const { data } = props;
+    const { data, open } = props;
 
     const statistics = useMemo(() => {
       return SolverStatisticsHelper.calculateSolverStatistics(data);
@@ -57,7 +57,7 @@ const SolverStatistics = createComponent({
     };
 
     return (
-      <Panel header="Solver statistics">
+      <Panel header="Solver statistics" open={open}>
         {statistics.solverList.map((item, index) => (
           <div className={Config.Css.css({ marginBottom: "2px" })} key={index}>
             {renderSolverItem(item.name, item.complexity, statistics.sprintComplexity)}
