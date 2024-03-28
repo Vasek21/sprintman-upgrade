@@ -47,8 +47,12 @@ const ImportStep = createComponent({
               subtitle: "Start date",
             },
             {
-              title: new Date(currentSprint.planEndDate).toLocaleDateString(),
-              subtitle: "End date",
+              title: currentSprint.ticketCount,
+              subtitle: "Ticket count",
+            },
+            {
+              title: data?.length,
+              subtitle: "Tickets to be added",
             },
           ];
         }
