@@ -29,6 +29,7 @@ const StepRenderer = createComponent({
     //@@viewOn:private
     const { stepIndex, onNext, onPrevious } = props;
     const [data, setData] = useState([]);
+    const [sprintId, setSprintId] = useState();
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -38,11 +39,11 @@ const StepRenderer = createComponent({
     const renderStepIndex = (stepIndex) => {
       switch (stepIndex) {
         case 0:
-          return <UploadStep onNext={onNext} onPrevious={onPrevious} setData={setData} />;
+          return <UploadStep onNext={onNext} onPrevious={onPrevious} setData={setData} setSprintId={setSprintId} />;
         case 1:
-          return <EditStep onNext={onNext} onPrevious={onPrevious} data={data} setData={setData} />;
+          return <EditStep onNext={onNext} onPrevious={onPrevious} data={data} setData={setData} sprintId={sprintId} />;
         case 2:
-          return <ImportStep onNext={onNext} onPrevious={onPrevious} data={data} />;
+          return <ImportStep onNext={onNext} onPrevious={onPrevious} data={data} sprintId={sprintId} />;
       }
     };
 

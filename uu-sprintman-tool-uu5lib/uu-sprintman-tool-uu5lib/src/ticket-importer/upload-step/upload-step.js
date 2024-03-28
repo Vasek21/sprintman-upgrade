@@ -1,7 +1,9 @@
 //@@viewOn:imports
-import { createComponent } from "uu5g05";
+import { createComponent, useMemo } from "uu5g05";
 import Uu5Forms from "uu5g05-forms";
 import Config from "../config/config.js";
+import { useSprint } from "../../sprintman/use-sprint";
+import CommonHelper from "../../helpers/common-helper";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -39,7 +41,20 @@ const UploadStep = createComponent({
   //@@viewOff:defaultProps
 
   render(props) {
-    const { onNext, setData } = props;
+    const { onNext, setData, setSprintId } = props;
+    const sprintList = useSprint();
+
+    const itemList = useMemo(() => {
+      if (sprintList?.data?.length) {
+        return sprintList.data.map((item) => {
+          return {
+            value: item.data.id,
+            children: CommonHelper.getSprintSelectComponent(item.data),
+            text: item.data.name,
+          };
+        });
+      }
+    }, [sprintList]);
     //@@viewOn:private
     //@@viewOff:private
     function onSubmit(event) {
@@ -49,7 +64,7 @@ const UploadStep = createComponent({
         setData(parseCsv(e.target.result));
         onNext();
       };
-
+      setSprintId(event.data.value.sprintId);
       reader.readAsText(event.data.value.ticketList);
       //@@viewOff:render
     }
@@ -79,6 +94,7 @@ const UploadStep = createComponent({
           <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "center", gap: "4px" })}>
             <div className={Config.Css.css(FILE_PROPS)}>
               <Uu5Forms.FormFile name="ticketList" label="Upload tickets" required />
+              <Uu5Forms.FormTextSelect itemList={itemList} name="sprintId" label="Select sprint" required />
             </div>
           </div>
           <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "end", gap: "4px" })}>

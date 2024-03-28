@@ -30,6 +30,12 @@ let Calls = {
       return Calls.call("get", commandUri, dtoIn);
     },
   },
+  Sprint: {
+    list(dtoIn, baseUri) {
+      const commandUri = Calls.getCommandUri("sprint/list", baseUri);
+      return Calls.call("get", commandUri, dtoIn);
+    },
+  },
   getCommandUri(aUseCase, baseUri) {
     // useCase <=> e.g. "getSomething" or "sys/getSomething"
     // add useCase to the application base URI

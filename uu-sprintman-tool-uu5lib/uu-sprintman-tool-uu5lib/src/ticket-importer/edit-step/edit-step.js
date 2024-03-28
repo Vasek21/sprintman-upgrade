@@ -39,8 +39,7 @@ const EditStep = createComponent({
 
   render(props) {
     //@@viewOn:private
-    const { onNext, onPrevious } = props;
-
+    const { onNext, onPrevious, sprintId } = props;
     const backlogList = useBacklogRequest();
     const topicList = useTopic();
     const _renderCell = (columnKey, rowData, indexes) => (

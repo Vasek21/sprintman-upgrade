@@ -10,6 +10,7 @@ import BacklogRequestListProvider from "../sprintman/backlog-request-list-provid
 import DataListStateResolver from "../common/data-list-state-resolver";
 import TicketListProvider from "../sprintman/ticket-list-provider";
 import TopicListProvider from "../sprintman/topic-list-provider";
+import SprintListProvider from "../sprintman/sprint-list-provider";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -46,35 +47,41 @@ const TicketImporter = createComponent({
         {(sprintManDataObject) => (
           <BacklogRequestListProvider baseUri={baseUri}>
             {(backlogRequestDataList) => (
-              <TicketListProvider baseUri={baseUri}>
-                {(ticketDataList) => (
-                  <TopicListProvider baseUri={baseUri}>
-                    {(topicDataList) => (
-                      <DataObjectStateResolver dataObject={sprintManDataObject}>
-                        <DataListStateResolver dataList={backlogRequestDataList}>
-                          <DataListStateResolver dataList={ticketDataList}>
-                            <DataListStateResolver dataList={topicDataList}>
-                              <SpacingProvider type="tight">
-                                <Block card="full">
-                                  <TicketStepper>
-                                    {({ stepIndex, handleNext, handlePrevious }) => (
-                                      <StepRenderer
-                                        stepIndex={stepIndex}
-                                        onNext={handleNext}
-                                        onPrevious={handlePrevious}
-                                      />
-                                    )}
-                                  </TicketStepper>
-                                </Block>
-                              </SpacingProvider>
+              <SprintListProvider baseUri={baseUri}>
+                {(sprintDataList) => (
+                  <TicketListProvider baseUri={baseUri}>
+                    {(ticketDataList) => (
+                      <TopicListProvider baseUri={baseUri}>
+                        {(topicDataList) => (
+                          <DataObjectStateResolver dataObject={sprintManDataObject}>
+                            <DataListStateResolver dataList={backlogRequestDataList}>
+                              <DataListStateResolver dataList={sprintDataList}>
+                                <DataListStateResolver dataList={ticketDataList}>
+                                  <DataListStateResolver dataList={topicDataList}>
+                                    <SpacingProvider type="tight">
+                                      <Block card="full">
+                                        <TicketStepper>
+                                          {({ stepIndex, handleNext, handlePrevious }) => (
+                                            <StepRenderer
+                                              stepIndex={stepIndex}
+                                              onNext={handleNext}
+                                              onPrevious={handlePrevious}
+                                            />
+                                          )}
+                                        </TicketStepper>
+                                      </Block>
+                                    </SpacingProvider>
+                                  </DataListStateResolver>
+                                </DataListStateResolver>
+                              </DataListStateResolver>
                             </DataListStateResolver>
-                          </DataListStateResolver>
-                        </DataListStateResolver>
-                      </DataObjectStateResolver>
+                          </DataObjectStateResolver>
+                        )}
+                      </TopicListProvider>
                     )}
-                  </TopicListProvider>
+                  </TicketListProvider>
                 )}
-              </TicketListProvider>
+              </SprintListProvider>
             )}
           </BacklogRequestListProvider>
         )}
