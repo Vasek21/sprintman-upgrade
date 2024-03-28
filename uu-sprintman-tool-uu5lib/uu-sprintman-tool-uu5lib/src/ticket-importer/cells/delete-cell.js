@@ -23,10 +23,6 @@ const DeleteCell = createComponent({
 
   render(props) {
     //@@viewOn:private
-    const deleteItem = (oldData, indexes) => {
-      oldData.splice(indexes.rowIndex, 1);
-      return [...oldData];
-    };
     //@@viewOff:private
 
     //@@viewOn:interface

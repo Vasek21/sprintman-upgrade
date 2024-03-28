@@ -13,7 +13,9 @@
     "uu5tilesg02": "^2.0.0",
     "uu_plus4u5g02": "^1.0.0",
     "uu_plus4u5g02-elements": "^1.0.0",
-    "uu_plus4u5g02-app": "^1.2.2"
+    "uu_plus4u5g02-app": "^1.2.2",
+    "uu_consoleg02": "^2.0.0",
+    "uu_consoleg02-core": "^2.0.0"
   },
   "uuBuildSettings": {
     "externals": {}

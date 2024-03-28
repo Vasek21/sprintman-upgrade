@@ -1,6 +1,6 @@
 //@@viewOn:imports
-import { createComponent, PropTypes } from "uu5g05";
-import { Button, Panel } from "uu5g05-elements";
+import { createComponent, PropTypes, Utils } from "uu5g05";
+import { Button, Line, Panel } from "uu5g05-elements";
 import Uu5TilesElements from "uu5tilesg02-elements";
 import Config from "../config/config.js";
 import TextCell from "../cells/text-cell";
@@ -9,7 +9,6 @@ import { Constants } from "../cells/constants";
 import SolverStatistics from "./solver-statistics";
 import { useBacklogRequest } from "../../sprintman/use-backlog-request";
 import { useTopic } from "../../sprintman/use-topic";
-import DeleteCell from "../cells/delete-cell";
 import Calls from "calls";
 //@@viewOff:imports
 
@@ -45,11 +44,10 @@ const EditStep = createComponent({
     const { onNext, onPrevious, sprintId, setAlertOpen } = props;
     const backlogList = useBacklogRequest();
     const topicList = useTopic();
+
     const _renderCell = (columnKey, rowData, indexes) => (
       <TextCell columnKey={columnKey} rowData={rowData} indexes={indexes} setData={props.setData} />
     );
-
-    const _renderDelete = (rowData, indexes) => <DeleteCell indexes={indexes} setData={props.setData} />;
     const _renderSelectCell = (columnKey, rowData, indexes, selectProps) => (
       <SelectCell
         columnKey={columnKey}
@@ -99,17 +97,23 @@ const EditStep = createComponent({
       <div className={Config.Css.css({ display: "flex", flexDirection: "column", gap: "4px" })}>
         <SolverStatistics data={props.data} />
         <Panel header={"Ticket list"} open>
-          <Button
-            value={"add new"}
-            colorScheme={"primary"}
-            icon="mdi-plus"
-            onClick={() => props.setData((oldData) => [...oldData, {}])}
-            width={"100%"}
-          >
-            Create new ticket
-          </Button>
           <Uu5TilesElements.Table
             data={props.data}
+            getActionList={(opt) => [
+              {
+                icon: "mdi-trash-can",
+                colorScheme: "negative",
+                onClick: () => {
+                  console.log(opt);
+
+                  props.setData((oldData) => [
+                    ...oldData.filter((item) => {
+                      return !Utils.Object.deepEqual(item, opt.data);
+                    }),
+                  ]);
+                },
+              },
+            ]}
             columnList={[
               {
                 value: "backlogRequestCode",
@@ -155,13 +159,23 @@ const EditStep = createComponent({
                 cellComponent: (rowData, indexes) => _renderCell("responsibleSolver", rowData, indexes),
               },
               {
-                value: "delete",
-                header: "Delete",
-                cellComponent: (rowData, indexes) => _renderDelete(rowData, indexes),
+                type: "actionList",
+                sticky: "right",
               },
             ]}
           />
+          <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "center" })}>
+            <Button
+              value={"add new"}
+              colorScheme={"primary"}
+              icon="mdi-plus"
+              onClick={() => props.setData((oldData) => [...oldData, {}])}
+            >
+              Create new ticket
+            </Button>
+          </div>
         </Panel>
+        <Line significance="subdued" />
         <div className={Config.Css.css({ display: "flex", width: "100%", justifyContent: "end", gap: "4px" })}>
           <Button onClick={onPrevious}>Previous</Button>
           <Button onClick={handleSaveButton}>Save</Button>

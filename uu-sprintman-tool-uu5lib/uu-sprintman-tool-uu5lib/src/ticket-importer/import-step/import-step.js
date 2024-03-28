@@ -1,6 +1,7 @@
 //@@viewOn:imports
 import { createComponent, useMemo } from "uu5g05";
 import { Alert, InfoGroup } from "uu5g05-elements";
+import UuScriptConsole from "uu_consoleg02";
 import Config from "../config/config.js";
 import SolverStatistics from "../edit-step/solver-statistics";
 import { useSprint } from "../../sprintman/use-sprint";
@@ -79,6 +80,25 @@ const ImportStep = createComponent({
         <InfoGroup itemList={selectedSprintInfoList} direction="horizontal" />
         <div>
           <SolverStatistics data={data} open />
+        </div>
+
+        <div className={Config.Css.css({ display: "flex", justifyContent: "center" })}>
+          <UuScriptConsole.Bricks.RunScriptButton
+            label="Import tickets"
+            scriptEngineUri="http://localhost:9090/uu-script-engineg02/11111111111111111111111111111112"
+            scriptUri="http://localhost:9090/uu-script-repositoryg02/44444444444444444444444444444442/script/getBody?code=import-tickets"
+            consoleBaseUri="http://localhost:9090/uu-console-maing02/33333333333333333333333333333332/"
+            consoleCode="1de49958407aa4c5"
+            scriptDtoIn={{
+              attachmentUri:
+                "https://uuapp-dev.plus4u.net/uu-dockit-maing02/d600cc5f059e4b6c924eaab35ae2da7e/document/attachment/getData?code=sprint_636a2e31156ed20038b8aa6d&documentId=6605238c2a1b4c002913057f",
+              sprintmanBaseUri: "http://localhost:9090/uu-sprintman-maing01/00000503defc438abdf47d1ecd301c67/",
+              consoleBaseUri: "http://localhost:9090/uu-console-maing02/33333333333333333333333333333332/",
+              sprintId: "636a2e31156ed20038b8aa6d",
+            }}
+            icon="uugds-file-move-outline"
+            callbackHttpMethod="POST"
+          />
         </div>
       </div>
     );
