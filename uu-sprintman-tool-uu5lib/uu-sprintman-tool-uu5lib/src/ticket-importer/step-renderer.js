@@ -30,6 +30,7 @@ const StepRenderer = createComponent({
     const { stepIndex, onNext, onPrevious } = props;
     const [data, setData] = useState([]);
     const [sprintId, setSprintId] = useState();
+    const [alertOpen, setAlertOpen] = useState(false);
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -41,9 +42,27 @@ const StepRenderer = createComponent({
         case 0:
           return <UploadStep onNext={onNext} onPrevious={onPrevious} setData={setData} setSprintId={setSprintId} />;
         case 1:
-          return <EditStep onNext={onNext} onPrevious={onPrevious} data={data} setData={setData} sprintId={sprintId} />;
+          return (
+            <EditStep
+              onNext={onNext}
+              onPrevious={onPrevious}
+              data={data}
+              setData={setData}
+              sprintId={sprintId}
+              setAlertOpen={setAlertOpen}
+            />
+          );
         case 2:
-          return <ImportStep onNext={onNext} onPrevious={onPrevious} data={data} sprintId={sprintId} />;
+          return (
+            <ImportStep
+              onNext={onNext}
+              onPrevious={onPrevious}
+              data={data}
+              sprintId={sprintId}
+              alertOpen={alertOpen}
+              setAlertOpen={setAlertOpen}
+            />
+          );
       }
     };
 

@@ -13,6 +13,11 @@
     }
   },
   "uu-sprintman-tool-scriptlib-uuscriptlib": {
-    "scriptList": []
+    "scriptList": [
+      {
+        "code": "uu-sprintman-tool-scriptlib/import-tickets",
+        "srcPath": "import-tickets.js"
+      }
+    ]
   }
 }
